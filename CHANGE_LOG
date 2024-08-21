@@ -1,0 +1,89 @@
+v2.9.0
+
+- Adds ability for manager to assign jobs to technicians, and improves manager
+  interface for working with jobs. Adds filter for input in job creation
+  interface. A user in technician group now sees dashboard of jobs assigned to 
+  them as landing page. Non-admin users no longer see the manager tab.
+- Shows natural language dates relative to current time.
+- Improve error handling for missing protocol code.
+- Improve database connection handling in Krill.
+- Improves database organization
+
+Includes changes to the database that require applying migrations. See the 
+release notes for details.
+
+Contributions from Mariko Anderson, and Gene Nomicos
+
+v2.8.1
+
+- Krill changes: add technician foot pedal interface (thanks to Abe Miller)
+- Add configurable OLA Simple technician page (Abe Miller)
+- Change handling of data associations so that only the most recent value of
+  a duplicate key will be displayed. (thanks to Gene Nomicos)
+- Change library controller to allow creating library externally with pfish.
+- Update entrypoint script to use AWS CloudMap namespace when run on ECS.
+- Change object type list to hide internal types.
+
+Contributions from Mariko Anderson, Amy Cash, Abe Miller, Gene Nomicos, and 
+Ben Keller
+
+v2.8.0
+
+This release makes Docker configuration the default.
+
+It is no longer necessary for non-developers to clone this repository,
+and instead users should be using the Docker image available on Docker hub from 
+https://hub.docker.com/r/aquariumbio/aquarium:
+- For production deployment, see the deployment instructions at aquarium.bio.
+- For a local deployment, clone https://github.com/klavinslab/aquarium-local.
+
+Changes:
+- Rewrite entrypoint script so that provides more capabilities for configuring
+  Aquarium.
+- Change creation interface for users and groups to make it easier to script
+  adding users.
+- Parameterize database and application configuration with environment variables.
+- Change puma configuration so that database.yml can contain ERB.
+- Flip docker-compose files so that development mode is the default.
+- Change Dockerfile to use a multi-stage build with a development stage,
+  a production-build stage, and the stage for the production image.
+- Make changes so that asset precompilation can occur in Docker production-build.
+  Includes removing unnecessary monkey patches, and parameterizing database.yml
+  file.
+- Consolidated deployment configuration with previous docker configuration, and
+  parameterized configuration using environment variables and a YAML file for 
+  instance details. Change S3 configuration to use either S3 or minio based on
+  environment variables.
+- Change biofab parameter key to "lab_agreement" and move agreement to YAML file.
+- Refactor models to use predicates instead of chained checks of attributes.
+- Pull source for aquadoc and anemone into components directory, and add
+  components directory to build.
+- Krill changes: allow show block note, check, and bullet to take array of strings as arguments.
+- Starting Aquarium in production using Docker will print the license.
+- Add Sorbet type checking, and simplecov test coverage. 
+
+
+v2.7.3
+- Changes system menu pages to be more consistent. Changes list pagination to
+  be alphabetical.
+- Fixes bug in job execution code that prevented debug operation from manager page.
+- Fixes a bug preventing import of collection dimensions.
+- Switches Aquarium to MIT License.
+- Add rake task to identify protocol dependencies.
+- Update sample search to show all items for a sample.
+
+- Update gem and yarn dependencies.
+
+
+v2.7.2
+- Fixes bug in recent changes to sample search where results were filtered
+  instead of accumulated and inventory would not be displayed.
+- Fixes default date for invoices to use current date.
+- Fixes error in json queries where includes were not handled correctly.
+- Fixes bug in import where parameters were not being imported properly.
+- Fixes error that occurred when browser looked for /favicon.ico 
+- Makes invoice output easier to read by including names and reordering columns.
+- Improves krill error output.
+
+- Update to ruby 2.6.5
+- Update gem and yarn dependencies.

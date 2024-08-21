@@ -1,0 +1,18 @@
+<tr>
+   <td><%= link_to user.name, user %></td>
+   <td><%= user.login %></td>
+   <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
+   <% if current_user.is_admin && !current_user?(user) %>
+     <% if user.retired? %>
+       <td><span title="To restore this user, go to the Groups page and remove this user from the 'retired' group" style="color:#ccc">
+          retired
+          </span></td>
+     <% else %>
+       <td>
+         active (<%= link_to "retire", user, method: :delete, data: { confirm: "Are you sure you want to retire this user?" } %>)
+       </td>
+     <% end %>
+   <% else %>
+     <td></td>
+   <% end %>
+</tr>
